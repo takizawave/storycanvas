@@ -1,11 +1,11 @@
 {
   "manifest_version": 3,
-  "name": "Story Library — Storybook to Design",
+  "name": "storycanvas",
   "version": "0.1.0",
   "description": "Storybookを、一覧・比較・コピーできるデザインコンポーネントライブラリに。",
   "minimum_chrome_version": "120",
   "permissions": ["activeTab", "scripting", "clipboardWrite", "storage"],
-  "action": { "default_popup": "popup.html", "default_title": "Story Libraryを開く" },
+  "action": { "default_popup": "popup.html", "default_title": "storycanvasを開く" },
   "background": { "service_worker": "background.js", "type": "module" },
   "icons": { "16": "icons/icon16.png", "48": "icons/icon48.png", "128": "icons/icon128.png" },
   "content_security_policy": { "extension_pages": "script-src 'self'; object-src 'self'" }

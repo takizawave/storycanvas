@@ -48,4 +48,4 @@ const server = http.createServer(async (request, response) => {
     response.end(`Storybook preview could not be loaded: ${error.message}`);
   }
 });
-server.listen(port,'127.0.0.1',() => console.log(`Story Library · live previews\nChakra: http://127.0.0.1:${port}/?path=/story/accordion--default\nSpectrum: http://127.0.0.1:${port}/spectrum-web-components/storybook/?path=/story/button-black-fill--primary\nGOV.UK: http://127.0.0.1:${port}/govuk-react/?path=/docs/form-group--docs\nCtrl+C to stop`));
+server.listen(port,'127.0.0.1',() => console.log(`storycanvas · live previews\nChakra: http://127.0.0.1:${port}/?path=/story/accordion--default\nSpectrum: http://127.0.0.1:${port}/spectrum-web-components/storybook/?path=/story/button-black-fill--primary\nGOV.UK: http://127.0.0.1:${port}/govuk-react/?path=/docs/form-group--docs\nCtrl+C to stop`));

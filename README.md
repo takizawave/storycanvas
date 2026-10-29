@@ -1,4 +1,4 @@
-# Story Library
+# storycanvas
 
 現在は**知り合いとの限定テスト・共同開発を準備中**です。コードはPrivateリポジトリ、Chrome ウェブストアはPrivate配布で始め、改善後にOSS化・一般公開する方針です。まだストア公開・OSSライセンスの適用はしていません。
 
@@ -55,12 +55,12 @@ Storybookを、デザインツールのように見て操作できるChrome拡�
 
 ### 拡張機能を開く
 
-`Story-Library.zip` を解凍して使います。ビルドは不要です。
+`storycanvas.zip` を解凍して使います。ビルドは不要です。
 
-1. `Story-Library.zip` を解凍します。
+1. `storycanvas.zip` を解凍します。
 2. Chromeで `chrome://extensions` を開き、右上の **デベロッパーモード** をオンにします。
-3. **パッケージ化されていない拡張機能を読み込む** から、解凍した **`Story-Library` フォルダ**を選びます。
-4. Storybookを開き、Story Libraryの拡張アイコンをクリックします。
+3. **パッケージ化されていない拡張機能を読み込む** から、解凍した **`storycanvas` フォルダ**を選びます。
+4. Storybookを開き、storycanvasの拡張アイコンをクリックします。
 5. **このStorybookを展開** を押します。
 
 Chrome公式の[ローカル拡張の読み込み手順](https://developer.chrome.com/docs/extensions/get-started/tutorial/hello-world#load-unpacked)も参照できます。Web Storeへの公開・ブラウザへの自動インストールはしていません。
@@ -80,7 +80,7 @@ Chrome公式の[ローカル拡張の読み込み手順](https://developer.chrom
 
 1. Figmaデスクトップの **Plugins → Development → Import plugin from manifest…** で `figma-plugin/manifest.json` を読み込みます。
 2. 拡張のコピー形式で **Figma** を選び、コンポーネントをコピーします。
-3. Figmaで **Story Library Import** を実行し、データを貼り付けてインポートします。
+3. Figmaで **storycanvas Import** を実行し、データを貼り付けてインポートします。
 
 ネイティブのComponentと編集可能なテキスト・図形を生成します。ブラウザで表示した一時点のデザインを取り込む方式で、Reactの動作、Auto Layout、Figma Variables、既存マスターとのリンクやVariant setの自動構築は含みません。SVGのみの場合はプラグイン不要です。
 
@@ -127,9 +127,9 @@ npm run package
 
 `npm run package` で次のZIPを作成します。ZIP作成は現在macOSの `ditto` を使用します。
 
-- `artifacts/Story-Library.zip` — 解凍してChromeに読み込む限定テスト用。
-- `artifacts/story-library-chrome-store.zip` — `manifest.json` が直下にあるストア提出用。
-- `artifacts/story-library-figma-plugin.zip` — 別途読み込むFigmaプラグイン。
+- `artifacts/storycanvas.zip` — 解凍してChromeに読み込む限定テスト用。
+- `artifacts/storycanvas-chrome-store.zip` — `manifest.json` が直下にあるストア提出用。
+- `artifacts/storycanvas-figma-plugin.zip` — 別途読み込むFigmaプラグイン。
 
 ストア用ZIPには明示した実行ファイルとアイコンだけを入れます。テスト用ホスト権限やバージョンの不一致を検出した場合は作成を停止します。ビルド・パッケージ作成だけでは外部公開しません。
 

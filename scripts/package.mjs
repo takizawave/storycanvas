@@ -6,24 +6,29 @@ import { stageExtension } from './release-files.mjs';
 if (process.platform !== 'darwin') throw new Error('ZIP packaging currently requires macOS (ditto). Building and unit tests also work on other platforms.');
 await mkdir('artifacts', {recursive:true});
 const flags = ['-c','-k','--norsrc','--noextattr','--noqtn'];
-const staging = await mkdtemp(path.join(os.tmpdir(), 'story-library-package-'));
+const staging = await mkdtemp(path.join(os.tmpdir(), 'storycanvas-package-'));
 try {
-  const extensionFolder = path.join(staging, 'Story-Library');
+  const extensionFolder = path.join(staging, 'storycanvas');
   await stageExtension(process.cwd(), extensionFolder);
   // Chrome Web Store requires manifest.json at the ZIP root, without a parent folder.
-  execFileSync('/usr/bin/ditto', [...flags, extensionFolder, path.join(staging, 'story-library-chrome-store.zip')]);
+  execFileSync('/usr/bin/ditto', [...flags, extensionFolder, path.join(staging, 'storycanvas-chrome-store.zip')]);
   await cp('docs/INSTALL.md', path.join(extensionFolder, 'README.md'));
   await cp('PRIVACY.md', path.join(extensionFolder, 'PRIVACY.md'));
-  execFileSync('/usr/bin/ditto', [...flags, '--keepParent', extensionFolder, path.join(staging, 'Story-Library.zip')]);
+  execFileSync('/usr/bin/ditto', [...flags, '--keepParent', extensionFolder, path.join(staging, 'storycanvas.zip')]);
   // Only the three importer files belong in the companion plugin package.
   const pluginFolder = path.join(staging, 'figma-plugin');
   await mkdir(pluginFolder);
   for (const file of ['manifest.json', 'code.js', 'ui.html']) await cp(path.join('figma-plugin', file), path.join(pluginFolder, file));
-  execFileSync('/usr/bin/ditto', [...flags, '--keepParent', pluginFolder, path.join(staging, 'story-library-figma-plugin.zip')]);
-  for (const file of ['story-library-chrome-store.zip', 'Story-Library.zip', 'story-library-figma-plugin.zip']) await cp(path.join(staging, file), path.resolve('artifacts', file));
-  // Keep previously shared download links pointing to the same named package.
-  await cp('artifacts/Story-Library.zip', 'artifacts/story-library-extension.zip');
+  execFileSync('/usr/bin/ditto', [...flags, '--keepParent', pluginFolder, path.join(staging, 'storycanvas-figma-plugin.zip')]);
+  for (const file of ['storycanvas-chrome-store.zip', 'storycanvas.zip', 'storycanvas-figma-plugin.zip']) await cp(path.join(staging, file), path.resolve('artifacts', file));
+  // Previously shared filenames remain aliases for the renamed packages.
+  for (const [current, previous] of [
+    ['storycanvas.zip', 'Story-Library.zip'],
+    ['storycanvas.zip', 'story-library-extension.zip'],
+    ['storycanvas-chrome-store.zip', 'story-library-chrome-store.zip'],
+    ['storycanvas-figma-plugin.zip', 'story-library-figma-plugin.zip'],
+  ]) await cp(path.join('artifacts', current), path.join('artifacts', previous));
 } finally {
   await rm(staging, { recursive: true, force: true });
 }
-console.log('artifacts/Story-Library.zip\nartifacts/story-library-chrome-store.zip\nartifacts/story-library-figma-plugin.zip');
+console.log('artifacts/storycanvas.zip\nartifacts/storycanvas-chrome-store.zip\nartifacts/storycanvas-figma-plugin.zip');

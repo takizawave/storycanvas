@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Story Library — video frame</title>
+  <title>storycanvas — video frame</title>
   <style>
     :root { color-scheme: light; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", sans-serif; font-synthesis: none; --ink: #272823; --paper: #f1ebdd; --mauve: #7c7380; --blue: #527fc1; }
     * { box-sizing: border-box; }
@@ -62,7 +62,7 @@
 </head>
 <body data-mode="storybook" data-popup="false">
   <div class="desktop" aria-hidden="true"><i class="orbit"></i></div>
-  <div class="scene-meta"><div class="caption" id="caption">Storybook → Story Library</div><div class="scene-state"><i></i><span id="mode-label">STORYBOOK</span></div></div>
+  <div class="scene-meta"><div class="caption" id="caption">Storybook → storycanvas</div><div class="scene-state"><i></i><span id="mode-label">STORYBOOK</span></div></div>
   <main class="browser" aria-label="Browser demonstration frame">
     <div class="tabs">
       <div class="traffic" aria-hidden="true"><span></span><span></span><span></span></div>
@@ -73,7 +73,7 @@
     <div class="toolbar">
       <div class="nav-icons" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="m10 4-6 6 6 6M4 10h12"/></svg><svg class="forward" viewBox="0 0 20 20"><path d="m10 4 6 6-6 6M4 10h12"/></svg><svg viewBox="0 0 20 20"><path d="M16 8a6 6 0 1 0 0 5M16 3v5h-5"/></svg></div>
       <div class="address"><svg viewBox="0 0 20 20"><path d="M4 6h12M4 14h12"/><circle cx="8" cy="6" r="2.2" fill="#faf8f0"/><circle cx="13" cy="14" r="2.2" fill="#faf8f0"/></svg><span class="url" id="url"><strong>opensource.adobe.com</strong>/spectrum-web-components/storybook/</span><svg class="bookmark" viewBox="0 0 20 20"><path d="m10 2 2.4 5 5.6.8-4 3.9.9 5.5-4.9-2.6-4.9 2.6.9-5.5-4-3.9L7.6 7Z"/></svg></div>
-      <button class="extension" id="extension" aria-label="Story Library extension"><img src="../dist/icons/icon48.png" alt=""><span>Story Library</span><span class="extension-state" id="extension-state">OFF</span></button>
+      <button class="extension" id="extension" aria-label="storycanvas extension"><img src="../dist/icons/icon48.png" alt=""><span>storycanvas</span><span class="extension-state" id="extension-state">OFF</span></button>
       <svg class="puzzle" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4V3a3 3 0 0 1 6 0v1h5v5h1a3 3 0 0 1 0 6h-1v5h-5v-1a3 3 0 0 0-6 0v1H4v-5h1a3 3 0 0 0 0-6H4V4Z" transform="translate(1 2) scale(.8)"/></svg>
       <span class="avatar">T</span><svg class="more" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="5" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="12" cy="19" r="1"/></svg>
     </div>
@@ -85,7 +85,7 @@
     window.setScene = function ({ source, url, mode = 'storybook', caption, popup = false, image } = {}) {
       document.body.dataset.mode = mode === 'library' ? 'library' : 'storybook';
       document.body.dataset.popup = String(Boolean(popup));
-      document.getElementById('mode-label').textContent = mode === 'library' ? 'STORY LIBRARY · CHROME EXTENSION' : 'STORYBOOK';
+      document.getElementById('mode-label').textContent = mode === 'library' ? 'storycanvas · CHROME EXTENSION' : 'STORYBOOK';
       document.getElementById('extension-state').textContent = mode === 'library' ? 'ON' : 'OFF';
       document.getElementById('extension').setAttribute('aria-pressed', String(mode === 'library'));
       if (source) document.getElementById('tab-name').textContent = `${names[source] || source} · Storybook`;

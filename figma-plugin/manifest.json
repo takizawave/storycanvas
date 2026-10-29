@@ -1,5 +1,5 @@
 {
-  "name": "Story Library Import",
+  "name": "storycanvas Import",
   "id": "story-library-local-import",
   "api": "1.0.0",
   "main": "code.js",

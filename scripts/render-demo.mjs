@@ -13,7 +13,7 @@ const scenes = [
   { title: 'Storybookを、Designer / PMにも。', tag: 'いつものStorybook', source: 'Chakra UI', active: 0 },
   { title: '実物を、まとめて見比べる。', tag: 'Chrome extension', source: 'Chakra UI', active: 0 },
   { title: 'ライブラリを切り替えて。', tag: 'Propertiesを編集', source: 'GOV.UK React', active: 1 },
-  { title: 'Variantsも、Propertiesも。', tag: 'Story Library', source: 'Adobe Spectrum', active: 2 },
+  { title: 'Variantsも、Propertiesも。', tag: 'storycanvas', source: 'Adobe Spectrum', active: 2 },
 ];
 const browser = await chromium.launch({ headless: true });
 try {
@@ -28,9 +28,9 @@ try {
       .window{position:absolute;left:80px;top:146px;width:1760px;height:896px;background:white;border:1px solid #d2d2d8;border-radius:10px 10px 0 0;box-shadow:0 12px 25px #0000000b;overflow:hidden}
       .bar{height:35px;background:#fafafa;border-bottom:1px solid #e3e3e6;display:flex;align-items:center;padding:0 15px;gap:7px}.dot{width:8px;height:8px;border-radius:50%;background:#d6d6dc}.address{margin-left:17px;font-size:12px;color:#797980;letter-spacing:.2px}.address strong{font-weight:500;color:#47474e}
       .step{position:absolute;bottom:12px;left:80px;color:#818188;font-size:11px;letter-spacing:1.2px}.time{position:absolute;bottom:12px;right:80px;color:#818188;font-size:11px;letter-spacing:1px}
-    </style><div class="eyebrow">STORY LIBRARY / CHROME EXTENSION</div><h1>${scene.title}</h1><div class="tag"><b>◇</b>${scene.tag}</div>
+    </style><div class="eyebrow">storycanvas / CHROME EXTENSION</div><h1>${scene.title}</h1><div class="tag"><b>◇</b>${scene.tag}</div>
     <div class="sources">${['Chakra UI', 'GOV.UK React', 'Adobe Spectrum'].map((name, source) => `<div class="source${source === scene.active ? ' active' : ''}">${name}</div>`).join('')}</div>
-    <div class="window"><div class="bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i><span class="address"><strong>${scene.source}</strong> / ${index === 0 ? 'Storybook' : 'Story Library'}</span></div></div><div class="step">${String(index + 1).padStart(2, '0')} / 04</div><div class="time">実際のUIを収録 · 読み込み時間を省略</div>`);
+    <div class="window"><div class="bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i><span class="address"><strong>${scene.source}</strong> / ${index === 0 ? 'Storybook' : 'storycanvas'}</span></div></div><div class="step">${String(index + 1).padStart(2, '0')} / 04</div><div class="time">実際のUIを収録 · 読み込み時間を省略</div>`);
     await page.screenshot({ path: `${out}/edit/frame-${index}.png` });
   }
 } finally { await browser.close(); }

@@ -1,12 +1,12 @@
-# Story Library — 限定テスト
+# storycanvas — 限定テスト
 
 Storybookを、コンポーネントを一覧・比較・コピーできるデザインライブラリとして使うChrome拡張です。現在は招待した知り合いと改善するためのテスト版です。一般公開・OSSライセンスの適用はまだ行っていません。
 
 ## インストール
 
-1. `Story-Library.zip` を解凍します。
+1. `storycanvas.zip` を解凍します。
 2. Chromeで `chrome://extensions` を開き、デベロッパーモードをオンにします。
-3. 「パッケージ化されていない拡張機能を読み込む」から、解凍した `Story-Library` フォルダを選びます。
+3. 「パッケージ化されていない拡張機能を読み込む」から、解凍した `storycanvas` フォルダを選びます。
 4. Storybookを開き、拡張アイコン →「このStorybookを展開」を押します。
 
 Chrome 120以降が必要です。更新版を受け取ったら同じフォルダのファイルを更新し、拡張機能の管理画面で再読み込みして、Storybookのタブも再読み込みしてください。手動インストール版には自動更新がありません。
@@ -20,7 +20,7 @@ Chrome 120以降が必要です。更新版を受け取ったら同じフォル�
 
 元のStorybookのコードは変更しません。対応するPropertiesはそのStorybookが公開しているものに限ります。表示・書き出しの再現には制限があり、Canvas、動画、高度なCSS効果などは完全に再現できません。
 
-Figmaで編集できるデータを取り込む場合は、別配布の `story-library-figma-plugin.zip` も必要です。解凍後、Figmaデスクトップの Plugins → Development → Import plugin from manifest からその中の `manifest.json` を読み込み、拡張でコピーしたFigma用データをプラグインに貼り付けます。
+Figmaで編集できるデータを取り込む場合は、別配布の `storycanvas-figma-plugin.zip` も必要です。解凍後、Figmaデスクトップの Plugins → Development → Import plugin from manifest からその中の `manifest.json` を読み込み、拡張でコピーしたFigma用データをプラグインに貼り付けます。
 
 ## データとフィードバック
 

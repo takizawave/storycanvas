@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f1ebdd">
-  <title>Story Library — Storybook for Designer & PM</title>
+  <title>storycanvas — Storybook for Designer & PM</title>
   <style>
     :root { color-scheme: light; font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans JP", sans-serif; color: #202124; background: #f1ebdd; font-synthesis: none; --border: #e5e5e7; --muted: #76767d; --blue: #0d99ff; --purple: #8a38f5; }
     * { box-sizing: border-box; }
@@ -73,15 +73,15 @@
 </head>
 <body>
   <header class="topbar">
-    <a class="brand" href="/" aria-label="Story Library デモ">
+    <a class="brand" href="/" aria-label="storycanvas デモ">
       <svg class="master" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="m12 0 5.5 5.5L12 11 6.5 5.5ZM5.5 6.5 11 12l-5.5 5.5L0 12ZM18.5 6.5 24 12l-5.5 5.5L13 12ZM12 13l5.5 5.5L12 24l-5.5-5.5Z"/></svg>
-      <span>Story Library</span><span class="extension">Chrome extension</span>
+      <span>storycanvas</span><span class="extension">Chrome extension</span>
     </a>
-    <a class="download" href="/story-library-demo.mp4" download="story-library-demo.mp4"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path d="M8 2v8m-3-3 3 3 3-3M3 11v3h10v-3"/></svg>MP4 を保存</a>
+    <a class="download" href="/storycanvas-demo.mp4" download="storycanvas-demo.mp4"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path d="M8 2v8m-3-3 3 3 3-3M3 11v3h10v-3"/></svg>MP4 を保存</a>
   </header>
   <main>
     <div class="intro">
-      <div><p class="eyebrow">Story Library / 20-second demo</p><h1>Storybookを、Designer / PMにも。</h1></div>
+      <div><p class="eyebrow">storycanvas / 20-second demo</p><h1>Storybookを、Designer / PMにも。</h1></div>
       <div class="view-tabs" role="tablist" aria-label="デモの表示">
         <button class="view-tab" id="video-tab" role="tab" aria-selected="true" aria-controls="video-panel" data-view="video">動画を見る</button>
         <button class="view-tab" id="interactive-tab" role="tab" aria-selected="false" aria-controls="interactive-panel" tabindex="-1" data-view="interactive">操作する</button>
@@ -89,7 +89,7 @@
     </div>
     <section id="video-panel" class="stage" role="tabpanel" aria-labelledby="video-tab">
       <div class="stage-top"><span class="stage-label"><i class="stage-dot"></i>実際の UI で見る</span><span class="stage-detail">00:20 · 1920 × 1080</span></div>
-      <video id="demo-video" src="/story-library-demo.mp4" poster="/poster.jpg" width="1920" height="1080" autoplay muted loop playsinline controls preload="metadata" aria-label="Story Library の20秒デモ動画"></video>
+      <video id="demo-video" src="/storycanvas-demo.mp4" poster="/poster.jpg" width="1920" height="1080" autoplay muted loop playsinline controls preload="metadata" aria-label="storycanvas の20秒デモ動画"></video>
     </section>
     <section id="interactive-panel" class="stage" role="tabpanel" aria-labelledby="interactive-tab" hidden>
       <div class="stage-top">
@@ -101,7 +101,7 @@
         </div>
         <a class="open-source" id="open-current" href="http://127.0.0.1:4173/?path=/story/heading--default" target="_blank" rel="noopener noreferrer">別タブで開く<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path d="M9 2h5v5M14 2 7 9M7 3H2v11h11V9"/></svg></a>
       </div>
-      <iframe id="live-preview" title="Chakra UI の Story Library 操作デモ" allow="clipboard-write" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+      <iframe id="live-preview" title="Chakra UI の storycanvas 操作デモ" allow="clipboard-write" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
     </section>
     <footer class="footer">
       <p>Chakra UI · GOV.UK React · Adobe Spectrum の実物で。</p>
@@ -126,7 +126,7 @@
     function loadSource() {
       const source = sources[activeSource];
       if (frame.getAttribute('src') !== source.url) frame.src = source.url;
-      frame.title = source.title + ' の Story Library 操作デモ';
+      frame.title = source.title + ' の storycanvas 操作デモ';
       document.querySelector('#open-current').href = source.url;
     }
     function showView(view, focus = false) {

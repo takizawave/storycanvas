@@ -119,7 +119,7 @@ figma.ui.onmessage = async message => {
   let component;
   try {
     const payload = JSON.parse(String(message.json));
-    if (!payload || payload.schema !== 'story-library/design' || payload.version !== 1 || !Array.isArray(payload.nodes)) throw new Error('Paste the Figma JSON copied from Story Library.');
+    if (!payload || payload.schema !== 'story-library/design' || payload.version !== 1 || !Array.isArray(payload.nodes)) throw new Error('Paste the Figma JSON copied from storycanvas.');
     if (payload.nodes.length > 10000) throw new Error('This component contains too many layers. Export a smaller story.');
     if (payload.nodes.some(spec => !spec || typeof spec !== 'object' || typeof spec.type !== 'string')) throw new Error('The component contains an invalid layer. Copy a fresh Figma JSON export.');
     if (![payload.width, payload.height].every(value => Number.isFinite(value) && value > 0 && value <= 16384)) throw new Error('The component dimensions are invalid.');
@@ -129,7 +129,7 @@ figma.ui.onmessage = async message => {
     component.resize(payload.width, payload.height);
     component.fills = [];
     component.clipsContent = true;
-    component.description = `Imported from Story Library${payload.storyUrl ? `\n${String(payload.storyUrl).slice(0, 2000)}` : ''}\nFixed-layout editable snapshot. See export warnings for visual differences.`;
+    component.description = `Imported from storycanvas${payload.storyUrl ? `\n${String(payload.storyUrl).slice(0, 2000)}` : ''}\nFixed-layout editable snapshot. See export warnings for visual differences.`;
     let count = 0;
     for (const spec of payload.nodes) {
       try {

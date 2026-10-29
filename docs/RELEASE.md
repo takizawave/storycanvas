@@ -23,7 +23,7 @@ Chromeストアの **Unlistedはリンクを知る人なら利用できる設定
 
 `dist/`、`artifacts/`、`node_modules/`、環境変数ファイルや鍵はGit管理対象から除外しています。ただし `.gitignore` は既に登録済みのファイルや過去の履歴を消す機能ではありません。一般公開前には履歴も含めて確認します。
 
-公開先は [takizawave/storybook-for-pm-and-designer](https://github.com/takizawave/storybook-for-pm-and-designer)（Private）。共同開発者の招待はまだ行っていません。
+公開先は [takizawave/storycanvas](https://github.com/takizawave/storycanvas)（Private）。共同開発者の招待はまだ行っていません。
 
 ## 2. 配布ファイルを作る
 
@@ -40,15 +40,17 @@ ZIP作成は現在macOSが必要です。ビルドと単体テストは他OSで�
 
 | ファイル | 用途 |
 | --- | --- |
-| `artifacts/Story-Library.zip` | 解凍すると `Story-Library/` が現れる手動インストール用 |
-| `artifacts/story-library-chrome-store.zip` | ストアにアップロードするZIP。`manifest.json` が直下 |
-| `artifacts/story-library-figma-plugin.zip` | Figmaの開発用プラグインとして読み込む別配布物 |
+| `artifacts/storycanvas.zip` | 解凍すると `storycanvas/` が現れる手動インストール用 |
+| `artifacts/storycanvas-chrome-store.zip` | ストアにアップロードするZIP。`manifest.json` が直下 |
+| `artifacts/storycanvas-figma-plugin.zip` | Figmaの開発用プラグインとして読み込む別配布物 |
 
 ZIP作成時に権限・バージョン・実行ファイルを確認し、既知のファイルだけを梱包します。テスト用の追加ホスト権限、開発用ファイル、デモ動画をストア用ZIPへ含めません。[ストアのZIP仕様](https://developer.chrome.com/docs/webstore/prepare)
 
 2026年10月29日の確認: ビルド成功、単体テスト63件成功、主要ブラウザテスト16項目成功。3つの配布ZIPの構造・内容・破損の有無も確認しました。実サイトを使う全テスト、Chromeのツールバーを実際にクリックする確認、Figmaアプリ内の実インポート、ストア審査は今回の確認範囲に含みません。
 
 ## 3. ChromeストアでPrivate配布
+
+2026年10月29日時点で、Chrome ウェブストアの開発者登録はまだ済んでいません。登録後にPrivate配布の申請を進めます。
 
 - 開発者アカウントを登録・設定し、運営者と連絡先を確定。
 - [ストア提出原稿](CHROME_STORE.md)を確認して掲載情報・権限の理由・審査用手順を入力。

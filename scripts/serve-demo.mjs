@@ -6,6 +6,8 @@ const hostname = '127.0.0.1';
 const port = 4174;
 const routes = new Map([
   ['/', { file: new URL('../demo/index.html', import.meta.url), type: 'text/html; charset=utf-8' }],
+  // Keep using the existing recording until a new one is captured.
+  ['/storycanvas-demo.mp4', { file: new URL('../artifacts/demo/story-library-demo.mp4', import.meta.url), type: 'video/mp4' }],
   ['/story-library-demo.mp4', { file: new URL('../artifacts/demo/story-library-demo.mp4', import.meta.url), type: 'video/mp4' }],
   ['/poster.jpg', { file: new URL('../artifacts/demo/poster.jpg', import.meta.url), type: 'image/jpeg' }]
 ]);
@@ -74,9 +76,9 @@ const server = createServer(async (req, res) => {
 });
 
 server.on('error', error => {
-  console.error(`Story Library demo could not start: ${error.message}`);
+  console.error(`storycanvas demo could not start: ${error.message}`);
   process.exitCode = 1;
 });
 server.listen(port, hostname, () => {
-  console.log(`Story Library demo: http://${hostname}:${port}`);
+  console.log(`storycanvas demo: http://${hostname}:${port}`);
 });
