@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f1ebdd">
+  <title>Story Library — Storybook for Designer & PM</title>
+  <style>
+    :root { color-scheme: light; font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans JP", sans-serif; color: #202124; background: #f1ebdd; font-synthesis: none; --border: #e5e5e7; --muted: #76767d; --blue: #0d99ff; --purple: #8a38f5; }
+    * { box-sizing: border-box; }
+    body { margin: 0; min-width: 320px; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    button { font: inherit; cursor: pointer; }
+    a { color: inherit; text-decoration: none; }
+    button:focus-visible, a:focus-visible, video:focus-visible { outline: 3px solid #0d99ff; outline-offset: 4px; }
+    [hidden] { display: none !important; }
+    .topbar { min-height: 56px; background: #fff; border-bottom: 1px solid var(--border); padding: 0 28px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    .brand { display: flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 650; letter-spacing: -.2px; }
+    .master { width: 22px; height: 22px; color: var(--purple); flex: none; }
+    .extension { color: var(--muted); border-left: 1px solid var(--border); padding-left: 14px; margin-left: 5px; font-size: 11px; font-weight: 400; letter-spacing: .1px; }
+    .download { display: inline-flex; align-items: center; gap: 7px; padding: 8px 11px; border: 1px solid var(--border); background: #fff; border-radius: 6px; font-size: 12px; white-space: nowrap; }
+    .download:hover { background: #f5f5f5; border-color: #c5c5cc; }
+    .download svg { width: 14px; height: 14px; }
+    main { width: min(1660px, calc(100% - 64px)); margin: 34px auto 24px; }
+    .intro { display: flex; align-items: center; justify-content: space-between; gap: 20px; margin-bottom: 24px; }
+    .eyebrow { color: var(--muted); font-size: 11px; margin: 0 0 9px; letter-spacing: .03em; }
+    h1 { font-size: clamp(19px, 2vw, 26px); line-height: 1.45; letter-spacing: -.65px; margin: 0; font-weight: 600; }
+    .view-tabs { display: inline-flex; align-items: center; padding: 4px; gap: 3px; border: 1px solid #dfdfe3; background: #eaeaec; border-radius: 9px; flex: none; }
+    .view-tab { background: transparent; border: 0; border-radius: 6px; padding: 9px 17px; color: #68686e; font-size: 12px; }
+    .view-tab[aria-selected="true"] { color: #202124; background: #fff; box-shadow: 0 1px 3px #0000000d; }
+    .view-tab:hover { color: #202124; }
+    .stage { overflow: hidden; border: 1px solid #d9d9df; border-radius: 12px; background: #fff; box-shadow: 0 8px 28px #20212408; }
+    .stage-top { min-height: 40px; display: flex; align-items: center; gap: 12px; padding: 9px 15px; border-bottom: 1px solid var(--border); font-size: 11px; color: var(--muted); background: #fcfcfc; }
+    .stage-label { display: flex; align-items: center; gap: 7px; color: #5b5b63; }
+    .stage-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--purple); }
+    .stage-detail { margin-left: auto; font-variant-numeric: tabular-nums; }
+    video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; background: #f1ebdd; object-fit: contain; }
+    .sources { display: flex; align-items: center; gap: 5px; flex-wrap: wrap; }
+    .source { border: 1px solid transparent; background: transparent; border-radius: 5px; padding: 6px 10px; color: #66666d; font-size: 11px; }
+    .source:hover { color: #202124; background: #f0f0f2; }
+    .source[aria-pressed="true"] { color: #0076d1; border-color: #c9e6ff; background: #eaf6ff; }
+    .live { display: flex; align-items: center; gap: 6px; color: #60646b; }
+    .live::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: #25a66a; }
+    .open-source { margin-left: auto; display: flex; align-items: center; gap: 5px; color: #66666d; white-space: nowrap; padding: 5px 0 5px 8px; }
+    .open-source:hover { color: #0076d1; }
+    .open-source svg { width: 13px; height: 13px; }
+    iframe { display: block; width: 100%; aspect-ratio: 16 / 9; border: 0; background: #f5f5f5; }
+    .footer { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 17px 2px 0; font-size: 11px; color: var(--muted); }
+    .footer p { margin: 0; line-height: 1.6; }
+    .direct-links { display: flex; gap: 17px; flex-wrap: wrap; justify-content: flex-end; }
+    .direct-links a:hover { color: #0076d1; text-decoration: underline; text-underline-offset: 3px; }
+    @media (min-width: 1800px) { main { margin-top: 40px; } }
+    @media (max-width: 700px) {
+      .topbar { padding: 0 16px; }
+      .extension { font-size: 10px; padding-left: 10px; margin-left: 0; }
+      .download { font-size: 11px; padding: 7px; }
+      main { width: calc(100% - 24px); margin-top: 25px; }
+      .intro { align-items: flex-start; flex-direction: column; gap: 18px; margin-bottom: 18px; }
+      .view-tabs { width: 100%; }
+      .view-tab { flex: 1; }
+      .stage { border-radius: 9px; }
+      .stage-top { padding: 8px 10px; gap: 7px; flex-wrap: wrap; }
+      .sources { gap: 2px; }
+      .source { padding: 6px 7px; font-size: 10px; }
+      .live { display: none; }
+      .open-source { font-size: 10px; }
+      iframe { height: 72vh; min-height: 480px; aspect-ratio: auto; }
+      .footer { align-items: flex-start; flex-direction: column; gap: 12px; }
+      .direct-links { justify-content: flex-start; gap: 18px; }
+    }
+    @media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="Story Library デモ">
+      <svg class="master" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="m12 0 5.5 5.5L12 11 6.5 5.5ZM5.5 6.5 11 12l-5.5 5.5L0 12ZM18.5 6.5 24 12l-5.5 5.5L13 12ZM12 13l5.5 5.5L12 24l-5.5-5.5Z"/></svg>
+      <span>Story Library</span><span class="extension">Chrome extension</span>
+    </a>
+    <a class="download" href="/story-library-demo.mp4" download="story-library-demo.mp4"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path d="M8 2v8m-3-3 3 3 3-3M3 11v3h10v-3"/></svg>MP4 を保存</a>
+  </header>
+  <main>
+    <div class="intro">
+      <div><p class="eyebrow">Story Library / 20-second demo</p><h1>Storybookを、Designer / PMにも。</h1></div>
+      <div class="view-tabs" role="tablist" aria-label="デモの表示">
+        <button class="view-tab" id="video-tab" role="tab" aria-selected="true" aria-controls="video-panel" data-view="video">動画を見る</button>
+        <button class="view-tab" id="interactive-tab" role="tab" aria-selected="false" aria-controls="interactive-panel" tabindex="-1" data-view="interactive">操作する</button>
+      </div>
+    </div>
+    <section id="video-panel" class="stage" role="tabpanel" aria-labelledby="video-tab">
+      <div class="stage-top"><span class="stage-label"><i class="stage-dot"></i>実際の UI で見る</span><span class="stage-detail">00:20 · 1920 × 1080</span></div>
+      <video id="demo-video" src="/story-library-demo.mp4" poster="/poster.jpg" width="1920" height="1080" autoplay muted loop playsinline controls preload="metadata" aria-label="Story Library の20秒デモ動画"></video>
+    </section>
+    <section id="interactive-panel" class="stage" role="tabpanel" aria-labelledby="interactive-tab" hidden>
+      <div class="stage-top">
+        <span class="live">LIVE</span>
+        <div class="sources" role="group" aria-label="Storybook を切り替え">
+          <button class="source" data-source="chakra" aria-pressed="true">Chakra UI</button>
+          <button class="source" data-source="govuk" aria-pressed="false">GOV.UK React</button>
+          <button class="source" data-source="spectrum" aria-pressed="false">Adobe Spectrum</button>
+        </div>
+        <a class="open-source" id="open-current" href="http://127.0.0.1:4173/?path=/story/heading--default" target="_blank" rel="noopener noreferrer">別タブで開く<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path d="M9 2h5v5M14 2 7 9M7 3H2v11h11V9"/></svg></a>
+      </div>
+      <iframe id="live-preview" title="Chakra UI の Story Library 操作デモ" allow="clipboard-write" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+    </section>
+    <footer class="footer">
+      <p>Chakra UI · GOV.UK React · Adobe Spectrum の実物で。</p>
+      <nav class="direct-links" aria-label="操作デモを別タブで開く">
+        <a href="http://127.0.0.1:4173/?path=/story/heading--default" target="_blank" rel="noopener noreferrer">Chakra UI ↗</a>
+        <a href="http://127.0.0.1:4173/govuk-react/?path=/docs/form-group--docs" target="_blank" rel="noopener noreferrer">GOV.UK React ↗</a>
+        <a href="http://127.0.0.1:4173/spectrum-web-components/storybook/?path=/story/button-black-fill--primary" target="_blank" rel="noopener noreferrer">Adobe Spectrum ↗</a>
+      </nav>
+    </footer>
+  </main>
+  <script>
+    const sources = {
+      chakra: { title: 'Chakra UI', url: 'http://127.0.0.1:4173/?path=/story/heading--default' },
+      govuk: { title: 'GOV.UK React', url: 'http://127.0.0.1:4173/govuk-react/?path=/docs/form-group--docs' },
+      spectrum: { title: 'Adobe Spectrum', url: 'http://127.0.0.1:4173/spectrum-web-components/storybook/?path=/story/button-black-fill--primary' }
+    };
+    const video = document.querySelector('#demo-video');
+    const frame = document.querySelector('#live-preview');
+    const viewTabs = [...document.querySelectorAll('[data-view]')];
+    let activeView = 'video';
+    let activeSource = 'chakra';
+    function loadSource() {
+      const source = sources[activeSource];
+      if (frame.getAttribute('src') !== source.url) frame.src = source.url;
+      frame.title = source.title + ' の Story Library 操作デモ';
+      document.querySelector('#open-current').href = source.url;
+    }
+    function showView(view, focus = false) {
+      if (view !== 'video' && view !== 'interactive') return;
+      activeView = view;
+      viewTabs.forEach(tab => {
+        const selected = tab.dataset.view === view;
+        tab.setAttribute('aria-selected', String(selected));
+        tab.tabIndex = selected ? 0 : -1;
+        if (selected && focus) tab.focus();
+      });
+      document.querySelector('#video-panel').hidden = view !== 'video';
+      document.querySelector('#interactive-panel').hidden = view !== 'interactive';
+      if (view === 'interactive') { video.pause(); loadSource(); }
+      else video.play().catch(() => {});
+    }
+    viewTabs.forEach(tab => {
+      tab.addEventListener('click', () => showView(tab.dataset.view));
+      tab.addEventListener('keydown', event => {
+        if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
+        event.preventDefault();
+        const next = event.key === 'Home' ? 'video' : event.key === 'End' ? 'interactive' : activeView === 'video' ? 'interactive' : 'video';
+        showView(next, true);
+      });
+    });
+    document.querySelectorAll('[data-source]').forEach(button => {
+      button.addEventListener('click', () => {
+        activeSource = button.dataset.source;
+        document.querySelectorAll('[data-source]').forEach(item => item.setAttribute('aria-pressed', String(item === button)));
+        if (activeView === 'interactive') loadSource();
+      });
+    });
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) video.pause();
+      else if (activeView === 'video') video.play().catch(() => {});
+    });
+  </script>
+</body>
+</html>

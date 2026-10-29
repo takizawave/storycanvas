@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fixture story</title>
+  <style>
+    * { box-sizing: border-box; } body { margin: 0; font: 14px/1.5 system-ui, sans-serif; color: #1a202c; background: #fff; }
+    #storybook-root { padding: 24px; } button, input { font: inherit; } button { cursor: pointer; } button:disabled, input:disabled { cursor: not-allowed; opacity: .45; }
+    .button { border: 0; border-radius: 6px; padding: 10px 18px; font-weight: 600; background: #319795; color: white; }
+    .button.secondary { background: #edf2f7; color: #2d3748; } .sizes { display: flex; align-items: center; gap: 12px; }
+    .field { display: grid; gap: 6px; max-width: 300px; } .field span { font-weight: 600; } input { border: 1px solid #cbd5e0; padding: 10px 12px; border-radius: 6px; min-width: 0; width: 100%; }
+    input[aria-invalid="true"] { border: 2px solid #e53e3e; } .error { color: #c53030; font-size: 12px; }
+    .badge { display: inline-flex; border-radius: 4px; padding: 3px 9px; color: white; background: #2f855a; font-size: 12px; font-weight: 700; }
+    .badge.subtle { background: #c6f6d5; color: #22543d; } .badge.outline { color: #2f855a; background: transparent; box-shadow: inset 0 0 0 1px #2f855a; }
+    .alert { padding: 14px 16px; max-width: 420px; display: flex; gap: 12px; border-radius: 6px; background: #bee3f8; color: #2a4365; }
+    .alert.success { color: #22543d; background: #c6f6d5; } .alert.error { color: #742a2a; background: #fed7d7; font-size: 14px; }
+    .accordion { max-width: 420px; } details { border-bottom: 1px solid #e2e8f0; } summary { padding: 14px 0; font-weight: 600; cursor: pointer; } details p { margin: 0 0 14px; color: #4a5568; }
+    .tabs { max-width: 400px; } [role="tablist"] { display: flex; border-bottom: 1px solid #e2e8f0; gap: 4px; } [role="tab"] { border: 0; padding: 10px 16px; background: transparent; color: #4a5568; }
+    [role="tab"][aria-selected="true"] { color: #2c7a7b; box-shadow: 0 2px 0 #319795; } .pills [role="tablist"] { border: 0; } .pills [aria-selected="true"] { border-radius: 6px; color: white; background: #319795; box-shadow: none; }
+  </style>
+</head>
+<body>
+  <div id="storybook-root"></div>
+  <script type="module">
+    import { stories } from './stories.js';
+    const id = new URLSearchParams(location.search).get('id') || 'accordion--default';
+    const story = stories.find(story => story.id === id) || stories[0];
+    const [component, variant] = story.id.split('--');
+    const root = document.querySelector('#storybook-root');
+    const examples = {
+      accordion: `<div class="accordion"><details ${variant === 'multiple' ? 'open' : ''}><summary>What is a design system?</summary><p>A shared library of reusable components and patterns.</p></details><details><summary>How do I use a component?</summary><p>Choose a variant and add it to your design.</p></details></div>`,
+      button: variant === 'sizes' ? '<div class="sizes"><button class="button" style="font-size:12px;padding:6px 12px">Small</button><button class="button">Medium</button><button class="button" style="font-size:18px;padding:14px 24px">Large</button></div>' : `<button class="button ${variant}" ${variant === 'disabled' ? 'disabled' : ''}>Get started</button>`,
+      input: `<label class="field"><span>Email address</span><input placeholder="you@example.com" ${variant === 'disabled' ? 'disabled' : ''} ${variant === 'invalid' ? 'aria-invalid="true" value="not-an-email"' : ''}>${variant === 'invalid' ? '<small class="error">Enter a valid email address.</small>' : ''}</label>`,
+      badge: `<span class="badge ${variant}">NEW RELEASE</span>`,
+      alert: `<div class="alert ${variant}" role="alert"><span aria-hidden="true">${variant === 'success' ? '✓' : variant === 'error' ? '!' : 'ⓘ'}</span><div><strong>${variant === 'success' ? 'Changes saved' : variant === 'error' ? 'Something went wrong' : 'A new version is available'}</strong><div>${variant === 'success' ? 'Your preferences are up to date.' : variant === 'error' ? 'Please try again in a moment.' : 'Refresh to get the latest improvements.'}</div></div></div>`,
+      tabs: `<div class="tabs ${variant}"><div role="tablist"><button role="tab" aria-selected="true">Overview</button><button role="tab" aria-selected="false">Activity</button><button role="tab" aria-selected="false">Settings</button></div><p role="tabpanel">Your workspace at a glance.</p></div>`,
+    };
+    root.innerHTML = examples[component];
+    for (const tab of root.querySelectorAll('[role="tab"]')) tab.addEventListener('click', () => { root.querySelectorAll('[role="tab"]').forEach(item => item.setAttribute('aria-selected', String(item === tab))); root.querySelector('[role="tabpanel"]').textContent = `${tab.textContent} content`; });
+    if (variant === 'disabled' && component === 'accordion') root.querySelectorAll('summary').forEach(summary => { summary.setAttribute('aria-disabled', 'true'); summary.addEventListener('click', event => event.preventDefault()); });
+    window.__STORYBOOK_CLIENT_API__ = { raw: () => stories.map(story => ({ ...story, kind: story.title, story: story.name, parameters: { docs: { source: { code: `<${story.title.split('/').at(-1)} variant="${story.name.toLowerCase()}" />` } } } })) };
+    window.__STORYBOOK_STORY_STORE__ = { _data: Object.fromEntries(window.__STORYBOOK_CLIENT_API__.raw().map(story => [story.id, story])), fromId: id => window.__STORYBOOK_CLIENT_API__.raw().find(story => story.id === id) };
+  </script>
+</body>
+</html>

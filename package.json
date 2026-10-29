@@ -1,0 +1,23 @@
+{
+  "name": "story-library",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "A visual component library for any Storybook, with editable Figma export.",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "dev": "node scripts/dev.mjs",
+    "demo": "node scripts/serve-demo.mjs",
+    "demo:record": "node scripts/record-demo-v2.mjs",
+    "demo:render": "node scripts/render-demo-v2.mjs",
+    "test": "node --test tests/*.test.js",
+    "test:browser": "node tests/browser.spec.mjs && node tests/preview-loading.browser.mjs && node tests/library-toggles.browser.mjs && node tests/popup-language.browser.mjs && node tests/infinite-canvas.browser.mjs && node tests/canvas-shortcuts.browser.mjs && node tests/canvas-navigation.browser.mjs && node tests/canvas-zoom.browser.mjs && node tests/actions.browser.mjs && node tests/story-examples.browser.mjs && node tests/preview-snapshot.browser.mjs && node tests/exporter.browser.mjs",
+    "test:live": "node tests/live-chakra.mjs",
+    "test:runtime": "node tests/story-runtime.live.mjs && node tests/runtime-extension.live.mjs && node tests/runtime-actions-extension.live.mjs",
+    "test:properties": "node tests/live-properties.mjs",
+    "test:examples": "node tests/story-examples.live.mjs",
+    "test:modern": "node tests/modern-library.live.mjs",
+    "package": "npm run build && node scripts/package.mjs"
+  },
+  "devDependencies": { "esbuild": "0.25.12", "playwright": "1.58.2" }
+}
