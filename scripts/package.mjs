@@ -10,15 +10,17 @@ const staging = await mkdtemp(path.join(os.tmpdir(), 'storycanvas-package-'));
 try {
   const extensionFolder = path.join(staging, 'storycanvas');
   await stageExtension(process.cwd(), extensionFolder);
+  await cp('LICENSE', path.join(extensionFolder, 'LICENSE'));
   // Chrome Web Store requires manifest.json at the ZIP root, without a parent folder.
   execFileSync('/usr/bin/ditto', [...flags, extensionFolder, path.join(staging, 'storycanvas-chrome-store.zip')]);
   await cp('docs/INSTALL.md', path.join(extensionFolder, 'README.md'));
   await cp('PRIVACY.md', path.join(extensionFolder, 'PRIVACY.md'));
   execFileSync('/usr/bin/ditto', [...flags, '--keepParent', extensionFolder, path.join(staging, 'storycanvas.zip')]);
-  // Only the three importer files belong in the companion plugin package.
+  // Include the importer files and their license in the companion package.
   const pluginFolder = path.join(staging, 'figma-plugin');
   await mkdir(pluginFolder);
   for (const file of ['manifest.json', 'code.js', 'ui.html']) await cp(path.join('figma-plugin', file), path.join(pluginFolder, file));
+  await cp('LICENSE', path.join(pluginFolder, 'LICENSE'));
   execFileSync('/usr/bin/ditto', [...flags, '--keepParent', pluginFolder, path.join(staging, 'storycanvas-figma-plugin.zip')]);
   for (const file of ['storycanvas-chrome-store.zip', 'storycanvas.zip', 'storycanvas-figma-plugin.zip']) await cp(path.join(staging, file), path.resolve('artifacts', file));
   // Previously shared filenames remain aliases for the renamed packages.

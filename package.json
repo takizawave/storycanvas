@@ -2,6 +2,7 @@
   "name": "storycanvas",
   "version": "0.1.0",
   "private": true,
+  "license": "MIT",
   "type": "module",
   "description": "A visual component library for any Storybook, with editable Figma export.",
   "scripts": {

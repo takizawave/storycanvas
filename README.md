@@ -1,12 +1,12 @@
 # storycanvas
 
-現在は**知り合いとの限定テスト・共同開発を準備中**です。コードはPrivateリポジトリ、Chrome ウェブストアはPrivate配布で始め、改善後にOSS化・一般公開する方針です。まだストア公開・OSSライセンスの適用はしていません。
+**MITライセンスで公開しているOSSです。** 不具合報告や改善提案、Pull Requestを歓迎します。Chrome ウェブストアにはまだ公開していません。ストア配布は知り合いとの限定テストから始める予定です。
 
-[配布とOSS化の手順](docs/RELEASE.md) · [共同開発](CONTRIBUTING.md) · [データの扱い](PRIVACY.md) · [ストア提出原稿](docs/CHROME_STORE.md)
+[ライセンス](LICENSE) · [共同開発](CONTRIBUTING.md) · [データの扱い](PRIVACY.md) · [配布の手順](docs/RELEASE.md)
 
 Storybookを、デザインツールのように見て操作できるChrome拡張です。**すべてのコンポーネントを見渡す無限キャンバス**と、**コンポーネントごとの詳細ページ**を行き来し、実物の比較、Properties編集、デザインのコピーができます。
 
-指定された [Chakra UI](https://chakra-ui.netlify.app/?path=/story/accordion--default)、[GOV.UK React](https://govuk-react.github.io/govuk-react/?path=/docs/form-group--docs)、[Adobe Spectrum](https://opensource.adobe.com/spectrum-web-components/storybook/?path=/story/button-black-fill--primary)で検証しています。表示はStorybookそのものから取得します。
+[Chakra UI](https://chakra-ui.netlify.app/?path=/story/accordion--default)、[GOV.UK React](https://govuk-react.github.io/govuk-react/?path=/docs/form-group--docs)、[Adobe Spectrum](https://opensource.adobe.com/spectrum-web-components/storybook/?path=/story/button-black-fill--primary)で検証しています。表示はStorybookそのものから取得します。
 
 ## VariantsとProperties
 
@@ -55,7 +55,9 @@ Storybookを、デザインツールのように見て操作できるChrome拡�
 
 ### 拡張機能を開く
 
-`storycanvas.zip` を解凍して使います。ビルドは不要です。
+ソースから試す場合は、リポジトリを取得して `npm ci`、`npm run build` を実行し、Chromeの `chrome://extensions` でデベロッパーモードを有効にして `dist` フォルダを読み込みます。Node.js 20以降が必要です。
+
+配布用の `storycanvas.zip` を受け取っている場合は、ビルドせずに次の手順で使えます。GitHubの「Download ZIP」はソース一式なので、先に上記のビルドが必要です。
 
 1. `storycanvas.zip` を解凍します。
 2. Chromeで `chrome://extensions` を開き、右上の **デベロッパーモード** をオンにします。
@@ -131,9 +133,11 @@ npm run package
 - `artifacts/storycanvas-chrome-store.zip` — `manifest.json` が直下にあるストア提出用。
 - `artifacts/storycanvas-figma-plugin.zip` — 別途読み込むFigmaプラグイン。
 
-ストア用ZIPには明示した実行ファイルとアイコンだけを入れます。テスト用ホスト権限やバージョンの不一致を検出した場合は作成を停止します。ビルド・パッケージ作成だけでは外部公開しません。
+ストア用ZIPには明示した実行ファイル、アイコン、MITライセンスを入れます。テスト用ホスト権限やバージョンの不一致を検出した場合は作成を停止します。ビルド・パッケージ作成だけでは外部公開しません。
 
 ### 20秒のデモ動画
+
+動画と検証画像はGitHubには含めていません。以下は手元で再生成するための説明です。
 
 `artifacts/demo/story-library-demo.mp4` は実際のUIを収録した20秒・1920×1080・30fpsの無音動画です。Chakra／GOV.UK／Adobeの各サイトで、元のStorybookと拡張後のライブラリ表示を交互に見せ、右パネルのPropertiesを実際にクリックして変更する様子を紹介します。元の画面には実サイトのキャプチャを使い、操作部分には実録画を使っています。読み込みの待ち時間は編集で省いています。
 
