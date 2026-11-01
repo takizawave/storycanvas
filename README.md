@@ -2,9 +2,9 @@
 
 **Storybookを、デザインの作業台に。**
 
-[![storycanvasの実画面：Chakra UIの見本をキャンバスに展開し、GOV.UKとAdobe Spectrumのプロパティを操作する9秒のプレビュー](docs/media/storycanvas-preview.gif)](docs/media/storycanvas-demo.mp4?raw=true)
+[![storycanvasの実画面：Chakra UIの見本をキャンバスに展開し、GOV.UKとAdobe Spectrumのプロパティを操作する9秒のプレビュー](docs/media/storycanvas-preview.gif)](docs/media/storycanvas-preview.png)
 
-**[▶ 20秒のデモを見る](docs/media/storycanvas-demo.mp4?raw=true)** · [静止画で見る](docs/media/storycanvas-preview.png) · [使いはじめる](#使いはじめる) · [開発に参加する](CONTRIBUTING.md)
+**[20秒のデモ動画をダウンロード（MP4）](docs/media/storycanvas-demo.mp4?raw=true)** · [静止画で見る](docs/media/storycanvas-preview.png) · [使いはじめる](#使いはじめる) · [開発に参加する](CONTRIBUTING.md)
 
 公開Storybookで撮影した実画面です。上のプレビューではキャンバス表示とプロパティ編集を、動画では元のStorybookからの変化も紹介しています。
 
