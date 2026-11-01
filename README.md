@@ -1,12 +1,20 @@
 # storycanvas
 
-**MITライセンスで公開しているOSSです。** 不具合報告や改善提案、Pull Requestを歓迎します。Chrome ウェブストアにはまだ公開していません。ストア配布は知り合いとの限定テストから始める予定です。
+**Storybookを、デザインの作業台に。**
 
-[ライセンス](LICENSE) · [共同開発](CONTRIBUTING.md) · [データの扱い](PRIVACY.md) · [配布の手順](docs/RELEASE.md)
+[![storycanvasの実画面：Chakra UIの見本をキャンバスに展開し、GOV.UKとAdobe Spectrumのプロパティを操作する9秒のプレビュー](docs/media/storycanvas-preview.gif)](docs/media/storycanvas-demo.mp4?raw=true)
+
+**[▶ 20秒のデモを見る](docs/media/storycanvas-demo.mp4?raw=true)** · [静止画で見る](docs/media/storycanvas-preview.png) · [使いはじめる](#使いはじめる) · [開発に参加する](CONTRIBUTING.md)
+
+公開Storybookで撮影した実画面です。上のプレビューではキャンバス表示とプロパティ編集を、動画では元のStorybookからの変化も紹介しています。
 
 Storybookを、デザインツールのように見て操作できるChrome拡張です。**すべてのコンポーネントを見渡す無限キャンバス**と、**コンポーネントごとの詳細ページ**を行き来し、実物の比較、Properties編集、デザインのコピーができます。
 
 [Chakra UI](https://chakra-ui.netlify.app/?path=/story/accordion--default)、[GOV.UK React](https://govuk-react.github.io/govuk-react/?path=/docs/form-group--docs)、[Adobe Spectrum](https://opensource.adobe.com/spectrum-web-components/storybook/?path=/story/button-black-fill--primary)で検証しています。表示はStorybookそのものから取得します。
+
+**MITライセンスのOSSです。** 不具合報告・改善提案・Pull Requestを歓迎します。Chrome ウェブストアは未公開で、ストア配布は知り合いとの限定テストから始める予定です。
+
+[ライセンス](LICENSE) · [共同開発](CONTRIBUTING.md) · [データの扱い](PRIVACY.md) · [配布の手順](docs/RELEASE.md)
 
 ## VariantsとProperties
 
@@ -137,11 +145,11 @@ npm run package
 
 ### 20秒のデモ動画
 
-動画と検証画像はGitHubには含めていません。以下は手元で再生成するための説明です。
+[デモ動画](docs/media/storycanvas-demo.mp4?raw=true)とREADME用のプレビューを `docs/media/` に収録しています。元の録画と検証画像は `artifacts/` に保存し、GitHubには含めません。撮影元と再生成手順は[メディアの説明](docs/media/README.md)を参照してください。
 
 `artifacts/demo/story-library-demo.mp4` は実際のUIを収録した20秒・1920×1080・30fpsの無音動画です。Chakra／GOV.UK／Adobeの各サイトで、元のStorybookと拡張後のライブラリ表示を交互に見せ、右パネルのPropertiesを実際にクリックして変更する様子を紹介します。元の画面には実サイトのキャプチャを使い、操作部分には実録画を使っています。読み込みの待ち時間は編集で省いています。
 
-`npm run demo` で `http://127.0.0.1:4174` に動画プレイヤーを開けます。「操作する」では3つのライブラリを切り替えられます。操作デモには別途 `npm run dev` を起動してください。録画を更新する場合は `npm run demo:record`、続いて `npm run demo:render` を実行します。編集にはPATH上のffmpegとffprobeを利用します。
+`npm run demo` で `http://127.0.0.1:4174` に動画プレイヤーを開けます。「操作する」では3つのライブラリを切り替えられます。操作デモには別途 `npm run dev` を起動してください。録画を更新する場合は `npm run demo:record`、`node scripts/capture-demo-popup.mjs`、`npm run demo:render`、`npm run demo:preview` の順に実行します。編集にはPATH上のffmpegとffprobeを利用します。
 
 `npm run demo:record` は未収録のサイトから再開します。3サイトを撮り直す場合は `npm run demo:record -- chakra govuk spectrum` を実行してください。
 

@@ -45,6 +45,7 @@ try {
   await popup.locator('#open').waitFor();
   const body = popup.locator('body');
   const bounds = await body.boundingBox();
+  const openButton = await popup.locator('#open').boundingBox();
   await body.screenshot({ path: path.join(out, 'popup.png') });
   const png = await readFile(path.join(out, 'popup.png'));
   let popupClickVerified = false;
@@ -56,7 +57,7 @@ try {
     popupClickVerified = true;
   }
   const result = {
-    popupMode, openPopupError, bounds,
+    popupMode, openPopupError, bounds, openButton,
     imagePixels: { width: png.readUInt32BE(16), height: png.readUInt32BE(20) },
     bytes: png.length, popupClickVerified,
     note: popupClickVerified ? 'Real popup click verified.' : 'Unmodified dist/popup.html captured as an extension page. Normal extension tabs cannot invoke OPEN_LIBRARY because sender.tab is deliberately rejected.',

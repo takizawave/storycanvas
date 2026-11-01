@@ -31,6 +31,9 @@ try {
     await page.screenshot({ path: `${edit}/frame-${index}.png` });
   }
   const popup = await readFile(`${out}/popup.png`);
+  const popupCapture = JSON.parse(await readFile(`${out}/popup-capture.json`, 'utf8'));
+  const { bounds, openButton } = popupCapture;
+  if (!bounds || !openButton) throw new Error('Run node scripts/capture-demo-popup.mjs to capture the current popup and button position.');
   // A full-frame transparent layer preserves shadow and popup anchoring.
   const geometry = geometries[0];
   const popupWidth = 425;
@@ -47,8 +50,8 @@ try {
   await page.screenshot({ path: `${edit}/click.png`, omitBackground: true });
   await writeFile(`${edit}/geometry.json`, JSON.stringify({
     geometry, popup: { x: popupLeft, y: popupTop, width: popupWidth,
-      buttonX: popupLeft + 340 * popupWidth / 680,
-      buttonY: popupTop + 511 * popupWidth / 680 },
+      buttonX: popupLeft + (openButton.x - bounds.x + openButton.width / 2) * popupWidth / bounds.width,
+      buttonY: popupTop + (openButton.y - bounds.y + openButton.height / 2) * popupWidth / bounds.width },
   }, null, 2));
 } finally { await browser.close(); }
 

@@ -11,6 +11,7 @@
     "demo": "node scripts/serve-demo.mjs",
     "demo:record": "node scripts/record-demo-v2.mjs",
     "demo:render": "node scripts/render-demo-v2.mjs",
+    "demo:preview": "node scripts/render-readme-preview.mjs",
     "test": "node --test tests/*.test.js",
     "test:browser": "node tests/browser.spec.mjs && node tests/preview-loading.browser.mjs && node tests/library-toggles.browser.mjs && node tests/popup-language.browser.mjs && node tests/infinite-canvas.browser.mjs && node tests/canvas-shortcuts.browser.mjs && node tests/canvas-navigation.browser.mjs && node tests/canvas-zoom.browser.mjs && node tests/actions.browser.mjs && node tests/story-examples.browser.mjs && node tests/preview-snapshot.browser.mjs && node tests/exporter.browser.mjs",
     "test:live": "node tests/live-chakra.mjs",
